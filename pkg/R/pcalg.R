@@ -3033,7 +3033,7 @@ ida <- function (x.pos, y.pos, mcov, graphEst, method = c("local", "optimal","gl
           result <- optimal.est(x.pos,y.pos,amat,mcov,verbose)
 
 
-          if(class(result)=="matrix") {
+          if(is.matrix(result)) {
             nsibs <- 1
             if(nx==1 && nrow(result)==1){
              result <- t(result)

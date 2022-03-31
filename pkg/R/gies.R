@@ -443,7 +443,7 @@ simy <- function(score, labels = score$getNodes(), targets = score$getTargets(),
 #' Converts a DAG to an (observational or interventional) essential graph
 dag2essgraph <- function(dag, targets = list(integer(0))) {
   edgeListDAG <- inEdgeList(dag)
-  edgeListEssGraph <- .Call("dagToEssentialGraph", edgeListDAG, targets)
+  edgeListEssGraph <- .Call(dagToEssentialGraph, edgeListDAG, targets)
   if (is.matrix(dag)) {
     p <- nrow(dag)
     result <- sapply(1:p, function(i) 1:p %in% edgeListEssGraph[[i]])

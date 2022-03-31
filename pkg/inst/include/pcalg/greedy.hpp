@@ -18,6 +18,19 @@
 #include <boost/graph/adjacency_list.hpp>
 #include <boost/dynamic_bitset.hpp>
 
+#if __cplusplus <= 201103L
+#  include <functional>   // std::binary_function
+#  define binary_Fn std::binary_function
+#else
+ // C++ >= C++14 : define binary_function, i.e. `binary_Fn`  template ourselves:
+ template <class Arg1, class Arg2, class Result>
+  struct binary_Fn {
+    typedef Arg1 first_argument_type;
+    typedef Arg2 second_argument_type;
+    typedef Result result_type;
+  };
+#endif
+
 enum edge_flag { NOT_PROTECTED, UNDECIDABLE, PROTECTED };
 
 // Types of adaptiveness (cf. "ARGES")
@@ -77,7 +90,7 @@ struct Edge
  * Comparator that yields an lexicographic ordering of edges with _inverse_
  * priority (first target, then source)
  */
-struct EdgeCmp : public std::binary_function<Edge, Edge, bool>
+struct EdgeCmp : public binary_Fn<Edge, Edge, bool>
 {
 	bool operator()(const Edge& first, const Edge& second) const
 	{
@@ -122,7 +135,7 @@ struct ArrowChange
 	double score;
 };
 
-struct ArrowChangeCmp : public std::binary_function<Edge, Edge, bool>
+struct ArrowChangeCmp : public binary_Fn<Edge, Edge, bool>
 {
 	bool operator()(const ArrowChange& first, const ArrowChange& second) const
 	{

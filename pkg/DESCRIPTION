@@ -38,4 +38,4 @@ Suggests: MASS, Matrix, Rgraphviz, mvtnorm, huge, ggplot2, dagitty
 NeedsCompilation: yes
 Encoding: UTF-8
 License: GPL (>= 2)
-URL: http://pcalg.r-forge.r-project.org/
+URL: https://pcalg.r-forge.r-project.org/

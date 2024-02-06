@@ -6267,8 +6267,8 @@ skeleton.dag2pag <- function(suffStat, indepTest, graph, ancList, L, alpha,
       sepset = sepset, pMax = pMax, zMin = matrix(NA, 1, 1))
 }
 
+## igraph alternative to Rgraphviz (only for pcAlgo objects)
 iplotPC <- function(pc.fit, labels = NULL) {
-  ## igraph alternative to Rgraphviz (only for pcAlgo objects)
   adjm <- wgtMatrix(getGraph(pc.fit), transpose = FALSE)
   if (!is.null(labels)) dimnames(adjm) <- list(labels, labels)
   g1 <- graph_from_adjacency_matrix( adjm )

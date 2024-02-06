@@ -63,7 +63,7 @@ randDAG <- function(n, d, method = "er", par1=NULL, par2=NULL, DAG = TRUE,
 
   ## From igraph graph to upper triangular Q - via random re-labeling
   g2Q <- function(g, sparse=FALSE) {
-    Q <- get.adjacency(g, sparse=sparse)
+    Q <- as_adjacency_matrix(g, sparse=sparse)
     perm <- sample.int(n)
     Q <- Q[perm, perm]
     Q * upper.tri(Q)

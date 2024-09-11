@@ -182,14 +182,17 @@ score <- new("GaussL0penObsScore", gmG8$x)
 ges.fit <- ges(score)
 
 ## Plot the estimated essential graph and the true DAG
-if (require(Rgraphviz)) {
+if(requireNamespace("Rgraphviz")) {
   par(mfrow=c(1,2))
   plot(ges.fit$essgraph, main = "Estimated CPDAG")
   plot(gmG8$g, main = "True DAG")
   ## alternative:
-  str(ges.fit, max=2)
-  as(as(ges.fit$essgraph,"graphNEL"),"Matrix")
+  str(ges.fit, max.level=2)
+  grNEL <- as(ges.fit$essgraph, "graphNEL")
+  if(requireNamespace("Matrix"))
+      print( as(grNEL, "Matrix") )
 }
+
 }
 \keyword{models}
 \keyword{graphs}

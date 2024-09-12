@@ -186,11 +186,11 @@ if(requireNamespace("Rgraphviz")) {
   par(mfrow=c(1,2))
   plot(ges.fit$essgraph, main = "Estimated CPDAG")
   plot(gmG8$g, main = "True DAG")
-  ## alternative:
-  str(ges.fit, max.level=2)
-  grNEL <- as(ges.fit$essgraph, "graphNEL")
-  if(requireNamespace("Matrix"))
-      print( as(grNEL, "Matrix") )
+  str(ges.fit, max=2)
+}
+## alternative:
+if (require(Matrix)) {
+  as(as(ges.fit$essgraph,"graphNEL"),"Matrix")
 }
 
 }
